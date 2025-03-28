@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'WI_Docs'
+project = 'WInDaB'
 copyright = '2025, Umang Kumar'
 author = 'Umang Kumar'
 release = '1.0'
