@@ -13,6 +13,7 @@ To use the code, first clone the github repository:
 Quickstart
 ----------
 
-.. code-block: console
+.. code-block:: console
+
    g++ -I boost model_calc.cpp
 
