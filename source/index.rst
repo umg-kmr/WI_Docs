@@ -19,6 +19,8 @@ Main goal of this code suite is to simplify the testing of warm inflationary mod
 
 The documentation will be separated into two main subsections:
 
+- Standalone background solver.
+- Complete WinDynB suite of applications with bayesian analysis.
 
 .. note::
 
