@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WinDynB, Warm Inflationary Dynamics and Bayesian analysis &mdash; WInDaB 1.0 documentation</title>
+  <title>WinDynB, Warm Inflationary Dynamics and Bayesian analysis &mdash; WinDynB 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="install/install.html" /> 
+    <link rel="next" title="Prerequisites" href="prereq.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
           
           
           <a href="#" class="icon icon-home">
-            WInDaB
+            WinDynB
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -43,8 +43,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="install/install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereq.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sa_bg_solver.html">Standalone Background Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayesian.html">Background and Bayesian Analysis</a></li>
 </ul>
 
         </div>
@@ -53,7 +54,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">WInDaB</a>
+          <a href="#">WinDynB</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -79,7 +80,13 @@
 <li><p>C++ code that solves the background and computes the primordial scalar and tensor power-spectrum.</p></li>
 <li><p>Python codes to perform the bayesian analysis (based on Cobaya) and generate plots.</p></li>
 </ol>
-<p>The C++ code handles the computationally intensive background solution efficiently especially when used with Cobaya to perform bayesian analysis. The python codes are used for ease of analysis and plotting with seamless interface to the C++ code. The WinDynB code suite has been designed to be customizeable and extensible to accomodate different Warm Inflationary models. The potential <span class="math notranslate nohighlight">\(V(\phi)\)</span> and form of the dissipation coefficient <span class="math notranslate nohighlight">\(\Upsilon(\phi,T)\)</span> can be changed without touching the solver code.</p>
+<p>The C++ code handles the computationally intensive background solution efficiently especially when used with Cobaya to perform bayesian analysis. The python codes are used for ease of analysis and plotting with seamless interface to the C++ code. The WinDynB code suite has been designed to be customizeable and extensible to accomodate different Warm Inflationary models. The potential <span class="math notranslate nohighlight">\(V(\phi)\)</span> and form of the dissipation coefficient <span class="math notranslate nohighlight">\(\Upsilon(\phi,T)\)</span> can be changed without touching the solver code; as well as the growth function :math:’<cite>G(Q)</cite> appearing in the scalar power spectrum.</p>
+<p>Main goal of this code suite is to simplify the testing of warm inflationary models against the current Cosmic Microwave Backgorund (CMB) constraints. You have to supply your model and run Cobaya to perform the bayesian analysis with the dataset of your choice. Some knowledge of C++ and Python would help but is not required, even though you will have to modify the C++ code to supply your model, it can be done without prior knowledge of C++. Advanced features are also provided if you wish to place additional constraints on your model (for example: <span class="math notranslate nohighlight">\(Q_* \leq 1\)</span>), obtain the full power spectrum as a function of <span class="math notranslate nohighlight">\(k\)</span>, automatically calculate the exit of pivot-scale <span class="math notranslate nohighlight">\(k_*\)</span> assuming a smooth transition to radiation domination after the end of inflation and so on…</p>
+<p>The documentation will be separated into two main subsections:</p>
+<ul class="simple">
+<li><p>Standalone background solver.</p></li>
+<li><p>Complete WinDynB suite of applications with bayesian analysis.</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This project is under active development.</p>
@@ -88,8 +95,12 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install/install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install/quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereq.html">Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sa_bg_solver.html">Standalone Background Solver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sa_bg_solver.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bayesian.html">Background and Bayesian Analysis</a></li>
 </ul>
 </div>
 </section>
@@ -99,7 +110,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="install/install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="prereq.html" class="btn btn-neutral float-right" title="Prerequisites" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

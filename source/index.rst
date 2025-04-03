@@ -29,8 +29,9 @@ The documentation will be separated into two main subsections:
 Contents
 --------
 .. toctree::
-   install/install
-   install/quickstart
+   prereq
+   sa_bg_solver
+   bayesian
    :maxdepth: 2
 
 
