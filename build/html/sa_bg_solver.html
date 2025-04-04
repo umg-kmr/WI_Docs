@@ -16,11 +16,12 @@
       <script src="_static/documentation_options.js?v=f2a433a1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Background and Bayesian Analysis" href="bayesian.html" />
-    <link rel="prev" title="Pre-requisites" href="prereq.html" /> 
+    <link rel="prev" title="Prerequisites" href="prereq.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,9 +44,33 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="prereq.html">Pre-requisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prereq.html">Prerequisites</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Standalone Background Solver</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-usage">Advanced Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44klow"><code class="docutils literal notranslate"><span class="pre">klow</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv43kup"><code class="docutils literal notranslate"><span class="pre">kup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv49camb_mcmc"><code class="docutils literal notranslate"><span class="pre">camb_mcmc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv416want_Np_autocalc"><code class="docutils literal notranslate"><span class="pre">want_Np_autocalc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv47verbose"><code class="docutils literal notranslate"><span class="pre">verbose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44npts"><code class="docutils literal notranslate"><span class="pre">npts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv45modelddiiz"><code class="docutils literal notranslate"><span class="pre">model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv41Vd"><code class="docutils literal notranslate"><span class="pre">V()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv42Vdd"><code class="docutils literal notranslate"><span class="pre">Vd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv43Upsdd"><code class="docutils literal notranslate"><span class="pre">Ups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv42GQd"><code class="docutils literal notranslate"><span class="pre">GQ()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv48max_iter"><code class="docutils literal notranslate"><span class="pre">max_iter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410maxiter_bg"><code class="docutils literal notranslate"><span class="pre">maxiter_bg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412maxiter_dxdN"><code class="docutils literal notranslate"><span class="pre">maxiter_dxdN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44atol"><code class="docutils literal notranslate"><span class="pre">atol</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44rtol"><code class="docutils literal notranslate"><span class="pre">rtol</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv44tend"><code class="docutils literal notranslate"><span class="pre">tend</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv49bg_solverRK8functionIFddEERK8functionIFddEERK8functionIFdddEERK8functionIFddEEdddddidddiiii"><code class="docutils literal notranslate"><span class="pre">bg_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv41Pd"><code class="docutils literal notranslate"><span class="pre">P()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv42PTd"><code class="docutils literal notranslate"><span class="pre">PT()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesian.html">Background and Bayesian Analysis</a></li>
@@ -79,25 +104,290 @@
 <h1>Standalone Background Solver<a class="headerlink" href="#standalone-background-solver" title="Link to this heading"></a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p>Clone the repository.</p></li>
-</ol>
+<ol class="arabic">
+<li><p>Clone the repository.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone link</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p>Navigate to the WinDynB directory.</p></li>
-</ol>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd WinDynB</span>
+</li>
+<li><p>Navigate to the WinDynB background solver directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd WinDynB/bg_solver</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p>Compile the code with C++ compiler of choice (g++ shown as example).</p></li>
-</ol>
+</li>
+<li><p>Compile the code with C++ compiler of choice (g++ shown as example).</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">g++ model_calc.cpp -o model_calc -I &lt;path-to-boost-installation&gt; -O3 -lm</span>
 </pre></div>
 </div>
 <p>where <em>&lt;path-to-boost-installation&gt;</em> should be replaced with the path to your boost library installation.</p>
+</li>
+<li><p>This should create an executable file named model_calc in the same directory which can be run as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./model_calc</span>
+</pre></div>
+</div>
+<p>if errors arise during the compilation, try adding the <code class="docutils literal notranslate"><span class="pre">-std=C++20</span></code> flag during compilation.</p>
+</li>
+</ol>
+</section>
+<section id="basic-usage">
+<span id="basic"></span><h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<p>The standalone background solver comes with the following two files:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bg.cpp</span></code></p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> can be used to specify the Warm Inflationary model. You need to supply the potential <span class="math notranslate nohighlight">\(V(\phi)\)</span>, derivative of the potential with respect to <span class="math notranslate nohighlight">\(\phi\)</span> <span class="math notranslate nohighlight">\((V_{,\phi})\)</span> and the dissipation coefficient <span class="math notranslate nohighlight">\(\Upsilon(\phi,T)\)</span>. By default the code comes with a generalized form of dissipation coefficient:</p>
+<div class="math notranslate nohighlight">
+\[\Upsilon(\phi,T) = C_{\Upsilon} T^p \phi^c \ ,\]</div>
+<p>with the dimension of <span class="math notranslate nohighlight">\(C_{\Upsilon}\)</span> depending upon the parameters <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In all the equations and parameters in the code suite we set <span class="math notranslate nohighlight">\(M_{\text{Pl}} = \dfrac{1}{\sqrt{8\pi G}} = 1\)</span>.</p>
+</div>
+<p>The general structure of the code is as follows:</p>
+<p>There are constant declarations followed by the function <code class="docutils literal notranslate"><span class="pre">model</span></code> that specifies the Warm Inflationary model to be considered. In the <code class="docutils literal notranslate"><span class="pre">model</span></code> function, there are individual functions to specify the WI model, set the initial conditions, constraint on initial value of <span class="math notranslate nohighlight">\(T_0/H_0&gt;1\)</span>, specification of the growth factor <span class="math notranslate nohighlight">\(G(Q)\)</span> appearing in the WI scalar power spectrum and memory clean-up functions. The <code class="docutils literal notranslate"><span class="pre">model</span></code> function supplies the WI model to the background solver <code class="docutils literal notranslate"><span class="pre">Bg.cpp</span></code> which implements the numerical solution of the WI background equations as well as power spectrum calculation.</p>
+<p>To specify the potential, modify the function <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">V</span></code>. For example, for the quadratic potential <span class="math notranslate nohighlight">\((\frac{1}{2} m^2 \phi^2)\)</span>:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="mf">0.5</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">phi</span><span class="o">*</span><span class="n">phi</span><span class="p">;</span>
+<span class="w">     </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>The above function definition is known as a <a class="reference external" href="https://en.cppreference.com/w/cpp/language/lambda">lambda</a> expression in C++. This helps us write down the potential only as a function of <span class="math notranslate nohighlight">\(\phi\)</span> while obtaining the value of the constant <span class="math notranslate nohighlight">\(m\)</span> from the top-level function <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">model</span></code>. The constant (fixed) parameters of the potential go in the square brackets following <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">V</span></code>. We consider the natural inflation potential to demonstrate this point:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">lmbd</span><span class="p">,</span><span class="n">f</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">lmbd</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="o">/</span><span class="n">f</span><span class="p">));</span>
+<span class="w">     </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Similarly the potential derivative and dissipation coefficient can be supplied to the code:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">Vd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="n">phi</span><span class="p">;</span>
+<span class="w">     </span><span class="p">};</span>
+
+
+<span class="k">auto</span><span class="w"> </span><span class="n">Ups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Cy</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">c</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">return</span><span class="w"> </span><span class="n">Cy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pow</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+<span class="w">     </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Next, modify the arguments of the <cite>void model</cite> function to accept the model parameters like <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(C_{\Upsilon}\)</span>, <span class="math notranslate nohighlight">\(g_*\)</span> etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The arguments of the <code class="docutils literal notranslate"><span class="pre">model</span></code> function will depend on the parameters needed for your particular WI model. The parameters <code class="docutils literal notranslate"><span class="pre">gst</span></code>, <code class="docutils literal notranslate"><span class="pre">Np</span></code> and <code class="docutils literal notranslate"><span class="pre">therm</span></code> are always required.</p>
+</div>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi_ini</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">gst</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">Cy</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">Np</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">therm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, modify the <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main()</span></code> function and supply your model parameters while calling the <code class="docutils literal notranslate"><span class="pre">model</span></code> function.</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">model</span><span class="p">(</span><span class="mf">13.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1e-6</span><span class="p">,</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">-2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w"> </span><span class="p">...</span>
+</pre></div>
+</div>
+<p>By default, the solver prints the value of <span class="math notranslate nohighlight">\(N_{\text{end}}\)</span> and saves the complete scalar power spectrum (if <code class="docutils literal notranslate"><span class="pre">camb_mcmc</span> <span class="pre">=</span> <span class="pre">1</span></code>) and prints the values of <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span> (if <code class="docutils literal notranslate"><span class="pre">camb_mcmc</span> <span class="pre">=</span> <span class="pre">0</span></code>).</p>
+</section>
+<section id="advanced-usage">
+<h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Link to this heading"></a></h2>
+<p>For more control over the solver code there are parameters and functions that can be modified as per your requirements.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> we have:</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44klow">
+<span id="_CPPv34klow"></span><span id="_CPPv24klow"></span><span id="klow__doubleC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">klow</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">6.0</span></span><a class="headerlink" href="#_CPPv44klow" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the <em>lower</em> limit of the range of <span class="math notranslate nohighlight">\(k \ (\text{Mpc}^{-1})\)</span> in <span class="math notranslate nohighlight">\(\log_{10}\)</span>.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv43kup">
+<span id="_CPPv33kup"></span><span id="_CPPv23kup"></span><span id="kup__doubleC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kup</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">2.0</span></span><a class="headerlink" href="#_CPPv43kup" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the <em>upper</em> limit of the range of <span class="math notranslate nohighlight">\(k \ (\text{Mpc}^{-1})\)</span> in <span class="math notranslate nohighlight">\(\log_{10}\)</span>.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49camb_mcmc">
+<span id="_CPPv39camb_mcmc"></span><span id="_CPPv29camb_mcmc"></span><span id="camb_mcmc__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">camb_mcmc</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv49camb_mcmc" title="Link to this definition"></a><br /></dt>
+<dd><p>Set to <span class="math notranslate nohighlight">\(0\)</span> if you want the solver to not compute the whole power spectrum and just output <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span>. The <code class="docutils literal notranslate"><span class="pre">klow</span></code> and <code class="docutils literal notranslate"><span class="pre">kup</span></code> variables have no effect in this case. Set to <span class="math notranslate nohighlight">\(1\)</span> if you want to compute and save the full scalar power spectrum between <span class="math notranslate nohighlight">\(10^{\text{klow}}\)</span> and <span class="math notranslate nohighlight">\(10^{\text{kup}}\)</span>.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416want_Np_autocalc">
+<span id="_CPPv316want_Np_autocalc"></span><span id="_CPPv216want_Np_autocalc"></span><span id="want_Np_autocalc__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">want_Np_autocalc</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv416want_Np_autocalc" title="Link to this definition"></a><br /></dt>
+<dd><p>Set to <span class="math notranslate nohighlight">\(0\)</span> if you wish to specify the number of e-foldings at pivot scale exit (<span class="math notranslate nohighlight">\(N_P\)</span>) or set to <span class="math notranslate nohighlight">\(1\)</span> if you want the solver to calculate <span class="math notranslate nohighlight">\(N_P\)</span> automatically (only when there’s a smooth transition to radiation domination at the end of inflation). In both cases, supply a value of <code class="docutils literal notranslate"><span class="pre">Np</span></code> to the solver.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47verbose">
+<span id="_CPPv37verbose"></span><span id="_CPPv27verbose"></span><span id="verbose__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verbose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv47verbose" title="Link to this definition"></a><br /></dt>
+<dd><p>Set to <span class="math notranslate nohighlight">\(1\)</span> if you want to see the errors encountered by the solver. Useful for debugging.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44npts">
+<span id="_CPPv34npts"></span><span id="_CPPv24npts"></span><span id="npts__i"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">npts</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">2000</span></span><a class="headerlink" href="#_CPPv44npts" title="Link to this definition"></a><br /></dt>
+<dd><p>Sets the number points to be evaluated for the power-spectrum. Will be ignored when <code class="docutils literal notranslate"><span class="pre">camb_mcmc=0</span></code>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45modelddiiz">
+<span id="_CPPv35modelddiiz"></span><span id="_CPPv25modelddiiz"></span><span id="model__double.double.i.i.z"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">model</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">param1</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">param2</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paramA</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">paramB</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45modelddiiz" title="Link to this definition"></a><br /></dt>
+<dd><p>Function specifying the WI model with model parameters as arguments. The <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">therm</span></code> argument of this function specifies the status of thermalization of the inflaton with the radiation bath (<code class="docutils literal notranslate"><span class="pre">0</span></code> for no thermalization and <code class="docutils literal notranslate"><span class="pre">1</span></code> for Bose-Einstein distribution).</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv41Vd">
+<span id="_CPPv31Vd"></span><span id="_CPPv21Vd"></span><span id="V__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">V</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv41Vd" title="Link to this definition"></a><br /></dt>
+<dd><blockquote>
+<div><p>A lambda function that specifies the potential <span class="math notranslate nohighlight">\(V(\phi)\)</span> and captures the potential parameters. Should be modified when specifying a WI model.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">param1</span><span class="p">,</span><span class="n">param2</span><span class="p">,...](</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">param1</span><span class="o">*</span><span class="n">param2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">param1</span></code> and <code class="docutils literal notranslate"><span class="pre">param2</span></code> are captured by <code class="docutils literal notranslate"><span class="pre">V</span></code> from the top-level function <code class="docutils literal notranslate"><span class="pre">model</span></code>. The function then behaves like <span class="math notranslate nohighlight">\(V(\phi)\)</span>.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv42Vdd">
+<span id="_CPPv32Vdd"></span><span id="_CPPv22Vdd"></span><span id="Vd__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Vd</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv42Vdd" title="Link to this definition"></a><br /></dt>
+<dd><p>A lambda function that specifies the derivative of the potential with respect to <span class="math notranslate nohighlight">\(\phi\)</span> <span class="math notranslate nohighlight">\((V_{,\phi})\)</span>. Should be modified when specifying a WI model.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">Vd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">param1</span><span class="p">,</span><span class="n">param2</span><span class="p">,...](</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">param1</span><span class="o">*</span><span class="n">param2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">phi</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43Upsdd">
+<span id="_CPPv33Upsdd"></span><span id="_CPPv23Upsdd"></span><span id="Ups__double.double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ups</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phi</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">T</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43Upsdd" title="Link to this definition"></a><br /></dt>
+<dd><p>A lambda function that specifies the form of dissipation coefficient <span class="math notranslate nohighlight">\(\Upsilon(\phi,T)\)</span>. Should be modified when specifying a WI model.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">Ups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">param1</span><span class="p">,</span><span class="n">param2</span><span class="p">,...]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">phi</span><span class="p">,</span><span class="kt">double</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">param1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">pow</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">param2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">param3</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv42GQd">
+<span id="_CPPv32GQd"></span><span id="_CPPv22GQd"></span><span id="GQ__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GQ</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv42GQd" title="Link to this definition"></a><br /></dt>
+<dd><p>This function specifies the form of the growth factor appearing in the scalar power spectrum for WI. The code by default ships with <span class="math notranslate nohighlight">\(G(Q)\)</span> specified in the article <a class="reference internal" href="#kamali2023" id="id1"><span>[Kamali2023]</span></a> valid for differnt forms of <span class="math notranslate nohighlight">\(\Upsilon\)</span>. Modify this function if your form of <span class="math notranslate nohighlight">\(G(Q)\)</span> differs from the ones pre-specified.</p>
+<div role="list" class="citation-list">
+<div class="citation" id="kamali2023" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Kamali2023</a><span class="fn-bracket">]</span></span>
+<p>Vahid Kamali et. al., “Recent Developments in Warm Inflation,” <em>Universe 9</em>, 2023, DOI: <cite>10.3390/universe9030124</cite></p>
+</div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">GQ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">param1</span><span class="p">,</span><span class="n">param2</span><span class="p">,...]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">Q</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">param1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Q</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>There are other functions within <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> that automatically calculates initial conditions needed to integrate the background equations once <span class="math notranslate nohighlight">\(\phi_{\text{initial}}\)</span> is specified.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">code-block that implements the automatic calculation of <code class="docutils literal notranslate"><span class="pre">Q_ini</span></code> and subsequently <code class="docutils literal notranslate"><span class="pre">T_ini</span></code> and <code class="docutils literal notranslate"><span class="pre">php_ini</span></code>.</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boost</span><span class="o">::</span><span class="n">math</span><span class="o">::</span><span class="n">tools</span><span class="o">::</span><span class="n">bisect</span><span class="p">(</span><span class="n">Qi_find</span><span class="p">,</span><span class="w"> </span><span class="mf">-20.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="n">root_stop</span><span class="p">(),</span><span class="n">max_iter</span><span class="p">);</span>
+<span class="w">      </span><span class="n">Q_ini</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">first</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Q_ini</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="n">Q_ini</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>If your model is more complex and requires setting the initial conditions manually, you can pass them to the <code class="docutils literal notranslate"><span class="pre">model</span></code> function and comment out the lines that call <code class="docutils literal notranslate"><span class="pre">set_php_ini(Q_ini)</span></code>, <code class="docutils literal notranslate"><span class="pre">set_T_ini(Q_ini)</span></code> functions, and also the initialization lines for these variables (for eg. comment out the line <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">T_ini=0.0;</span></code> if you are supplying <code class="docutils literal notranslate"><span class="pre">T_ini</span></code>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If your model has a form of <span class="math notranslate nohighlight">\(\Upsilon\)</span> other than <span class="math notranslate nohighlight">\(C_{\Upsilon} T^p \phi^c\)</span> then deactivate (comment out) the automatic <code class="docutils literal notranslate"><span class="pre">Q_ini</span></code> calculation as the current implementation assumes the form of <span class="math notranslate nohighlight">\(\Upsilon\)</span> mentioned before.</p>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Bg.cpp</span></code> we have:</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48max_iter">
+<span id="_CPPv38max_iter"></span><span id="_CPPv28max_iter"></span><span id="max_iter__uintmax_t"></span><span class="n"><span class="pre">uintmax_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_iter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1000000</span></span><a class="headerlink" href="#_CPPv48max_iter" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the upper limit for root finding algorithm iterations.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410maxiter_bg">
+<span id="_CPPv310maxiter_bg"></span><span id="_CPPv210maxiter_bg"></span><span id="maxiter_bg__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiter_bg</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e5</span></span><a class="headerlink" href="#_CPPv410maxiter_bg" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the upper limit for the background integration iterations.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412maxiter_dxdN">
+<span id="_CPPv312maxiter_dxdN"></span><span id="_CPPv212maxiter_dxdN"></span><span id="maxiter_dxdN__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxiter_dxdN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e4</span></span><a class="headerlink" href="#_CPPv412maxiter_dxdN" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the upper limit for the <span class="math notranslate nohighlight">\(\frac{\text{d}\ln k}{\text{d}N}\)</span> integration iterations.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44atol">
+<span id="_CPPv34atol"></span><span id="_CPPv24atol"></span><span id="atol__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">atol</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e-10</span></span><a class="headerlink" href="#_CPPv44atol" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the absolute tolerance for all the integration routines involved.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44rtol">
+<span id="_CPPv34rtol"></span><span id="_CPPv24rtol"></span><span id="rtol__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtol</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1e-8</span></span><a class="headerlink" href="#_CPPv44rtol" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the relative tolerance for all the integration routines involved.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44tend">
+<span id="_CPPv34tend"></span><span id="_CPPv24tend"></span><span id="tend__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tend</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">200.0</span></span><a class="headerlink" href="#_CPPv44tend" title="Link to this definition"></a><br /></dt>
+<dd><p>Specifies the upper limit of <span class="math notranslate nohighlight">\(N_{\text{end}}\)</span>.</p>
+</dd></dl>
+
+<p>Most of the above parameters can be left to their default values and can be changed when more finer control over the solvers is required. The structure of the <code class="docutils literal notranslate"><span class="pre">Bg.cpp</span></code> is very similar to the <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> file, this file is meant to be untouched for basic usage but can be modified for more advanced usage involving (but not limited to) modifying background equations, modifying the computation of WI power-spectra and adding constraints on intermediate computation products.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49bg_solverRK8functionIFddEERK8functionIFddEERK8functionIFdddEERK8functionIFddEEdddddidddiiii">
+<span id="_CPPv39bg_solverRK8functionIFddEERK8functionIFddEERK8functionIFdddEERK8functionIFddEEdddddidddiiii"></span><span id="_CPPv29bg_solverRK8functionIFddEERK8functionIFddEERK8functionIFdddEERK8functionIFddEEdddddidddiiii"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bg_solver</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">V</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Vd</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Ups</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">GQ</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Cr</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Np</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">phi_ini</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">php_ini</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">T_ini</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">therm</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">kp</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">klow</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">kup</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">npts</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">camb_mcmc</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">want_Np_autocalc</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">verbose</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49bg_solverRK8functionIFddEERK8functionIFddEERK8functionIFdddEERK8functionIFddEEdddddidddiiii" title="Link to this definition"></a><br /></dt>
+<dd><p>Function that contains the background solver as well as the power-spectra calculator. It takes the defined model from <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> file and solves the relevant equations to produce the observables. It is recommended that you do not modify the arguments of this function as that might break the functionality, the arguments essentially capture the variables and functions defined in the <code class="docutils literal notranslate"><span class="pre">model_calc.cpp</span></code> file.</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv41Pd">
+<span id="_CPPv31Pd"></span><span id="_CPPv21Pd"></span><span id="P__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">P</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv41Pd" title="Link to this definition"></a><br /></dt>
+<dd><p>This function should be modified when your model requires a change in the WI scalar power-spectrum. For most cases, the default function should work as it assumes WI power spectra of the form:</p>
+<div class="math notranslate nohighlight">
+\[P_{\mathcal{R}}(k_*) = \left(\dfrac{H_*}{2\pi \phi'_*}\right)^2 \left[1 + 2 n_* + \dfrac{T_*}{H_*}\dfrac{2 \sqrt{3}\pi Q_*}{\sqrt{3+4\pi Q_*}}\right] G(Q_*)\]</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Nask</span><span class="p">,</span><span class="n">phiasN</span><span class="p">,</span><span class="n">phpasN</span><span class="p">,</span><span class="n">TasN</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">Q</span><span class="p">,</span><span class="n">therm</span><span class="p">,</span><span class="n">GQ</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">NN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nask</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">phin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phiasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">phpn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phpasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">Tn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">Hn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="p">(</span><span class="n">phin</span><span class="p">,</span><span class="n">phpn</span><span class="p">,</span><span class="n">Tn</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">Qn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">(</span><span class="n">phin</span><span class="p">,</span><span class="n">phpn</span><span class="p">,</span><span class="n">Tn</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">distrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">therm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">distrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="n">tanh</span><span class="p">(</span><span class="n">Hn</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Tn</span><span class="p">));</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">therm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">distrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">pow</span><span class="p">((</span><span class="n">Hn</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">M_PI</span><span class="o">*</span><span class="n">phpn</span><span class="p">)),</span><span class="mf">2.0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">distrib</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">Tn</span><span class="o">/</span><span class="n">Hn</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="w"> </span><span class="mf">2.0</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span><span class="o">*</span><span class="n">M_PI</span><span class="o">*</span><span class="n">Qn</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">M_PI</span><span class="o">*</span><span class="n">Qn</span><span class="p">)</span><span class="w"> </span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">GQ</span><span class="p">(</span><span class="n">Qn</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv42PTd">
+<span id="_CPPv32PTd"></span><span id="_CPPv22PTd"></span><span id="PT__double"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PT</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv42PTd" title="Link to this definition"></a><br /></dt>
+<dd><p>This function implements the tensor power spectrum, same as for the standard (cold) inflationary case.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">PT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">Nask</span><span class="p">,</span><span class="n">phiasN</span><span class="p">,</span><span class="n">phpasN</span><span class="p">,</span><span class="n">TasN</span><span class="p">,</span><span class="n">H</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">NN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Nask</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">phin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phiasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">phpn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phpasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">Tn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TasN</span><span class="p">(</span><span class="n">NN</span><span class="p">);</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">Hn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="p">(</span><span class="n">phin</span><span class="p">,</span><span class="n">phpn</span><span class="p">,</span><span class="n">Tn</span><span class="p">);</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">pow</span><span class="p">(</span><span class="n">Hn</span><span class="p">,</span><span class="mf">2.0</span><span class="p">))</span><span class="o">/</span><span class="n">pow</span><span class="p">(</span><span class="n">M_PI</span><span class="p">,</span><span class="mf">2.0</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> function can then be modified according to the <a class="reference internal" href="#basic"><span class="std std-ref">Basic Usage</span></a> section to obtain the results.</p>
 </section>
 </section>
 
@@ -105,7 +395,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="prereq.html" class="btn btn-neutral float-left" title="Pre-requisites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="prereq.html" class="btn btn-neutral float-left" title="Prerequisites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="bayesian.html" class="btn btn-neutral float-right" title="Background and Bayesian Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

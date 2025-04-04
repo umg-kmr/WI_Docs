@@ -30,4 +30,4 @@ Prerequisites
    There is no installation required for boost library, just extract the downloaded package.
 
    
-#. Finally, install Cobaya by following the instructions given in the `documentation <https://cobaya.readthedocs.io/en/latest/>`_.
+#. Finally, install Cobaya by following the instructions given in the `documentation <https://cobaya.readthedocs.io/en/latest/>`_. Cobaya implements the bayesian analysis part of the code suite.

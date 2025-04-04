@@ -1,5 +1,5 @@
 ===================
-Prerequisites:
+Prerequisites
 ===================
 
 #. Install anaconda by following the intall instructions at `anaconda.org <https://www.anaconda.com/docs/getting-started/miniconda/install>`_ for your operating system. It is not essential to the operation of the code suite but recommended to setup a conda environment separately for a WinDynB install.
