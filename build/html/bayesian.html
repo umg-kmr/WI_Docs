@@ -16,6 +16,7 @@
       <script src="_static/documentation_options.js?v=f2a433a1"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,8 +43,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prereq.html">Prerequisites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sa_bg_solver.html">Standalone Background Solver</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Background and Bayesian Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background and Bayesian Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constraining-a-s-and-n-s">Constraining <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span></a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -72,6 +78,61 @@
              
   <section id="background-and-bayesian-analysis">
 <h1>Background and Bayesian Analysis<a class="headerlink" href="#background-and-bayesian-analysis" title="Link to this heading"></a></h1>
+<p>This is where the full implementation of WinDynB code suite is discussed. A lot of usage instructions are similar to the <a class="reference internal" href="sa_bg_solver.html#std-bg"><span class="std std-ref">Standalone Background Solver</span></a> . We will only highlight the differences and additional features.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Clone the repository.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone link</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This step can be ignored if you have already cloned the repository before.</p>
+</div>
+</li>
+<li><p>Navigate to the WinDynB bayes directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd WinDynB/bayes</span>
+</pre></div>
+</div>
+</li>
+<li><p>Compile the code with C++ compiler of choice (g++ shown as example).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">g++ -shared -fPIC model_calc.cpp -o libmodel.so -I &lt;path-to-boost-installation&gt; -O3 -ftree-vectorize -funroll-loops -lm</span>
+</pre></div>
+</div>
+<p>where <em>&lt;path-to-boost-installation&gt;</em> should be replaced with the path to your boost library installation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The compilation command is very different in this as compared to the standalone solver because we are creating a shared library to interface with python. The compiler flags <code class="docutils literal notranslate"><span class="pre">-shared</span></code> and <code class="docutils literal notranslate"><span class="pre">-fPIC</span></code> ensure that. Make sure to modify the output file extension, linux expects a <code class="docutils literal notranslate"><span class="pre">.so</span></code> extension for shared libraries.</p>
+</div>
+<p>If errors arise during the compilation, try adding the <code class="docutils literal notranslate"><span class="pre">-std=C++20</span></code> flag during compilation.</p>
+</li>
+<li><p>Ensure that your python environment is ready to work with shared libraries by installing <a class="reference external" href="https://cffi.readthedocs.io/en/stable/">CFFI</a>.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda install -c conda-forge cffi</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Ensure that Cobaya is installed with one of the cosmological datasets (eg. Planck NPIPE) and working (preferably with MPI).</p></li>
+</ol>
+</section>
+<section id="constraining-a-s-and-n-s">
+<h2>Constraining <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span><a class="headerlink" href="#constraining-a-s-and-n-s" title="Link to this heading"></a></h2>
+<p>In this section we will discuss a simpler (and faster) method to constrain the WI model parameters. Note that this method does not guarantee compatibility with the full CMB Angular Power Spectrum.</p>
+<p>We define the log-likelihood <span class="math notranslate nohighlight">\((\mathcal{L})\)</span> in the form:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{\ln \mathcal{L}(\Theta : \zeta)} = -\dfrac{1}{2} \sum_{i} \left[ \ln 2\pi \sigma_{i}^{2} + \left(\dfrac{\theta_i - \mu_i}{\sigma_i}\right)^2 \right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Theta\)</span> is a vector of predicted observables (eg. <span class="math notranslate nohighlight">\([A_s,n_s]\)</span>) and <span class="math notranslate nohighlight">\(\zeta\)</span> is a vector of actual observation of these observables <span class="math notranslate nohighlight">\([\mu,\sigma]\)</span>. By default the values for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are set to the values obtained from TT,TE,EE+lowE+lensing of <a class="reference internal" href="#planck2018" id="id1"><span>[Planck2018]</span></a></p>
+<blockquote>
+<div><div role="list" class="citation-list">
+<div class="citation" id="planck2018" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">Planck2018</a><span class="fn-bracket">]</span></span>
+<p>Planck Collaboration, “Planck 2018 results. X. Constraints on inflation,” <em>Astron.Astrophys</em>, 2020, DOI: <cite>10.1051/0004-6361/201833887</cite></p>
+</div>
+</div>
+</div></blockquote>
+</section>
 </section>
 
 

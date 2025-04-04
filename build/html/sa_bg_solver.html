@@ -53,6 +53,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv43kup"><code class="docutils literal notranslate"><span class="pre">kup</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv49camb_mcmc"><code class="docutils literal notranslate"><span class="pre">camb_mcmc</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv416want_Np_autocalc"><code class="docutils literal notranslate"><span class="pre">want_Np_autocalc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412want_bg_file"><code class="docutils literal notranslate"><span class="pre">want_bg_file</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv47verbose"><code class="docutils literal notranslate"><span class="pre">verbose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv44npts"><code class="docutils literal notranslate"><span class="pre">npts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv45modelddiiz"><code class="docutils literal notranslate"><span class="pre">model()</span></code></a></li>
@@ -101,7 +102,7 @@
            <div itemprop="articleBody">
              
   <section id="standalone-background-solver">
-<h1>Standalone Background Solver<a class="headerlink" href="#standalone-background-solver" title="Link to this heading"></a></h1>
+<span id="std-bg"></span><h1>Standalone Background Solver<a class="headerlink" href="#standalone-background-solver" title="Link to this heading"></a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <ol class="arabic">
@@ -205,19 +206,25 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv49camb_mcmc">
 <span id="_CPPv39camb_mcmc"></span><span id="_CPPv29camb_mcmc"></span><span id="camb_mcmc__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">camb_mcmc</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv49camb_mcmc" title="Link to this definition"></a><br /></dt>
-<dd><p>Set to <span class="math notranslate nohighlight">\(0\)</span> if you want the solver to not compute the whole power spectrum and just output <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span>. The <code class="docutils literal notranslate"><span class="pre">klow</span></code> and <code class="docutils literal notranslate"><span class="pre">kup</span></code> variables have no effect in this case. Set to <span class="math notranslate nohighlight">\(1\)</span> if you want to compute and save the full scalar power spectrum between <span class="math notranslate nohighlight">\(10^{\text{klow}}\)</span> and <span class="math notranslate nohighlight">\(10^{\text{kup}}\)</span>.</p>
+<dd><p>Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> if you want the solver to not compute the whole power spectrum and just output <span class="math notranslate nohighlight">\(A_s\)</span> and <span class="math notranslate nohighlight">\(n_s\)</span>. The <code class="docutils literal notranslate"><span class="pre">klow</span></code> and <code class="docutils literal notranslate"><span class="pre">kup</span></code> variables have no effect in this case. Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if you want to compute and save the full scalar power spectrum between <span class="math notranslate nohighlight">\(10^{\text{klow}}\)</span> and <span class="math notranslate nohighlight">\(10^{\text{kup}}\)</span>.</p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv416want_Np_autocalc">
 <span id="_CPPv316want_Np_autocalc"></span><span id="_CPPv216want_Np_autocalc"></span><span id="want_Np_autocalc__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">want_Np_autocalc</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv416want_Np_autocalc" title="Link to this definition"></a><br /></dt>
-<dd><p>Set to <span class="math notranslate nohighlight">\(0\)</span> if you wish to specify the number of e-foldings at pivot scale exit (<span class="math notranslate nohighlight">\(N_P\)</span>) or set to <span class="math notranslate nohighlight">\(1\)</span> if you want the solver to calculate <span class="math notranslate nohighlight">\(N_P\)</span> automatically (only when there’s a smooth transition to radiation domination at the end of inflation). In both cases, supply a value of <code class="docutils literal notranslate"><span class="pre">Np</span></code> to the solver.</p>
+<dd><p>Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> if you wish to specify the number of e-foldings at pivot scale exit (<span class="math notranslate nohighlight">\(N_P\)</span>) or set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if you want the solver to calculate <span class="math notranslate nohighlight">\(N_P\)</span> automatically (only when there’s a smooth transition to radiation domination at the end of inflation). In both cases, supply a value of <code class="docutils literal notranslate"><span class="pre">Np</span></code> to the solver.</p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412want_bg_file">
+<span id="_CPPv312want_bg_file"></span><span id="_CPPv212want_bg_file"></span><span id="want_bg_file__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">want_bg_file</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv412want_bg_file" title="Link to this definition"></a><br /></dt>
+<dd><p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if you wish to save the integration results of the background (saves as <code class="docutils literal notranslate"><span class="pre">bg.txt</span></code>), can then be loaded into python for quick visualization.</p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv47verbose">
 <span id="_CPPv37verbose"></span><span id="_CPPv27verbose"></span><span id="verbose__iC"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verbose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv47verbose" title="Link to this definition"></a><br /></dt>
-<dd><p>Set to <span class="math notranslate nohighlight">\(1\)</span> if you want to see the errors encountered by the solver. Useful for debugging.</p>
+<dd><p>Set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if you want to see the errors encountered by the solver. Useful for debugging.</p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -387,6 +394,22 @@
 </div>
 </dd></dl>
 
+<p>If you wish to add additional constraints on a parameter, follow the following code structure:</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">verbose</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">             </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;&lt;custom error message to display&gt;&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">         </span><span class="p">}</span>
+<span class="w">         </span><span class="k">return</span><span class="p">;</span>
+<span class="w">     </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="w"> </span><span class="c1">//Catches the error and continues without exiting.</span>
+<span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">return</span><span class="p">;</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>An example of implementation of additional constraints is present in the code itself.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">main</span></code> function can then be modified according to the <a class="reference internal" href="#basic"><span class="std std-ref">Basic Usage</span></a> section to obtain the results.</p>
 </section>
 </section>

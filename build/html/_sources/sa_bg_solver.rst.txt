@@ -1,3 +1,5 @@
+.. _std_bg:
+
 ============================
 Standalone Background Solver
 ============================
@@ -133,15 +135,19 @@ In the ``model_calc.cpp`` we have:
 
 .. cpp:var:: const int camb_mcmc = 0
 
-   Set to :math:`0` if you want the solver to not compute the whole power spectrum and just output :math:`A_s` and :math:`n_s`. The ``klow`` and ``kup`` variables have no effect in this case. Set to :math:`1` if you want to compute and save the full scalar power spectrum between :math:`10^{\text{klow}}` and :math:`10^{\text{kup}}`.
+   Set to ``0`` if you want the solver to not compute the whole power spectrum and just output :math:`A_s` and :math:`n_s`. The ``klow`` and ``kup`` variables have no effect in this case. Set to ``1`` if you want to compute and save the full scalar power spectrum between :math:`10^{\text{klow}}` and :math:`10^{\text{kup}}`.
 
 .. cpp:var:: const int want_Np_autocalc = 1
 
-   Set to :math:`0` if you wish to specify the number of e-foldings at pivot scale exit (:math:`N_P`) or set to :math:`1` if you want the solver to calculate :math:`N_P` automatically (only when there's a smooth transition to radiation domination at the end of inflation). In both cases, supply a value of ``Np`` to the solver.
+   Set to ``0`` if you wish to specify the number of e-foldings at pivot scale exit (:math:`N_P`) or set to ``1`` if you want the solver to calculate :math:`N_P` automatically (only when there's a smooth transition to radiation domination at the end of inflation). In both cases, supply a value of ``Np`` to the solver.
+
+.. cpp:var:: const int want_bg_file = 0
+
+   Set to ``1`` if you wish to save the integration results of the background (saves as ``bg.txt``), can then be loaded into python for quick visualization.
 
 .. cpp:var:: const int verbose = 0
 
-   Set to :math:`1` if you want to see the errors encountered by the solver. Useful for debugging.
+   Set to ``1`` if you want to see the errors encountered by the solver. Useful for debugging.
 
 .. cpp:var:: int npts = 2000
 
@@ -291,5 +297,24 @@ Most of the above parameters can be left to their default values and can be chan
          double Hn = H(phin,phpn,Tn);
          return (2.0*pow(Hn,2.0))/pow(M_PI,2.0);
       };
+
+If you wish to add additional constraints on a parameter, follow the following code structure:
+
+.. code-block:: C++
+
+   try {
+        if ( <condition> ) {
+            if (verbose==1) {
+                cout<<"<custom error message to display>"<<endl;
+            }
+            return;
+        }
+    }
+    //Catches the error and continues without exiting.
+    catch (const exception& e) {
+        return;
+    }
+
+An example of implementation of additional constraints is present in the code itself.
 
 The ``main`` function can then be modified according to the :ref:`basic` section to obtain the results.
